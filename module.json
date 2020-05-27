@@ -1,0 +1,8 @@
+{
+    "name": "Pages",
+    "author": "Kaitlyn Concilio",
+    "authorUrl": "https://technicalpenguins.com",
+    "moduleUrl": "https://github.com/kaitwalla/LinkCMS-Pages",
+    "register": ["\\LinkCMS\\Modules\\Pages\\Actor","Register"],
+    "version": "1.1.2"
+}

@@ -1,0 +1,47 @@
+{% extends '/manage/index.twig' %}
+
+{% set pageTitle = 'Pages' %}
+
+{% set bodyClass = ['pages','itemList'] %}
+
+{% block content %}
+<h1 class="t-right">Pages</h1>
+<div>
+    <a class="button success" href="/manage/pages/create">+ New page</a>
+</div>
+{% if modulesList %}
+    {% if modulesList.active %}
+        <section class="p-top-10 p-bottom-10">
+        {% for moduleSlug,module in modulesList.active %}
+            <div class="p-8 b-1 b-solid b-color-softBlack">
+                <h2>{{ attribute(module,"name") }}</h2>
+                <p>
+                {% for param,name in {'moduleUrl':'Module URL', 'author': 'Author','authorUrl':'Author URL'} %}
+                    {% if attribute(module,param) %}
+                        {% if param == 'moduleUrl' or param == 'authorUrl' %}
+                            {% if param != 'moduleUrl' %}<strong>{{ name }}:</strong> {% endif %}<a href="{{ attribute(module,param) }}">{{ attribute(module,param) }}</a><br />
+                        {% else %}    
+                            <strong>{{ name }}:</strong> {{ attribute(module,param) }}<br />
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                </p>
+            </div>
+        {% endfor %}
+        </section>
+    {% endif %}
+    {% if modulesList.disabled %}
+        <section class="p-top-10 p-bottom-10">
+            <h2>Disabled modules</h2>
+            <div class="display-grid col-2 col-tab-3">
+            {% for module in modulesList.disabled %}
+                <div class="m-2 b-1 b-solid p-10 b-color-softBlack rounded-10">
+                    <h3 class="t-color-softBlack">{{ module.name }}</h3>
+                    <p>{{ module.problem }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+{% endif %}
+{% endblock %}

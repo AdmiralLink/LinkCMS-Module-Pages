@@ -1,0 +1,16 @@
+{% extends '/content.twig' %}
+{% import 'macros.forms.twig' as forms %}
+
+{% set pageTitle = "Create Page" %}
+
+{% set bodyClass = ['form content'] %}
+
+{% block content %}
+    <div class="form label-s">
+        {{ forms.text('title', 'Title') }}
+    </div>
+{% endblock %}
+{% block metadata %}
+    {{ forms.date('postDate', 'Publish Date', page.postDate) }}
+    {{ forms.time('postTime', 'Time', page.postTime) }}
+{% endblock %}
