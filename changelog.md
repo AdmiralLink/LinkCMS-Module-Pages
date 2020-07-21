@@ -1,3 +1,8 @@
+# 0.1.1
+## MODIFIED
+- API image upload URL
+- Controller::load_by default order by ID DESC
+
 # 0.1.0
 ## ADDED
 - Added method for basic routes, add route for assets, registered namespace

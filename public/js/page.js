@@ -273,7 +273,7 @@ let Page = function() {
             } else {
                 Controls.set('insert');
             }
-            Editor = Hat.start({imageUploadUrl: '/manage/upload', data: data});
+            Editor = Hat.start({imageUploadUrl: '/api/image/upload', data: data});
             window.data = Data;
         }
     };

@@ -4,5 +4,5 @@
     "authorUrl": "https://technicalpenguins.com",
     "moduleUrl": "https://github.com/kaitwalla/LinkCMS-Pages",
     "register": ["\\LinkCMS\\Modules\\Pages\\Actor","Register"],
-    "version": "0.1.0"
+    "version": "0.1.1"
 }
