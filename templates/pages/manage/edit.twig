@@ -26,6 +26,10 @@
     {{ forms.button('<i class="fas fa-atlas"></i> <span>Publish</span>', 'primary inverse stack', 'publishBtn') }}
     {{ forms.button('<i class="fas fa-eye"></i> <span>View Published</span>', 'secondary inverse stack', 'viewBtn') }}
     {{ forms.button('<i class="fas fa-eye"></i> <span>Review Published</span>', 'info inverse stack', 'reviewBtn') }}
+    {% if id %}
+    <hr>
+        <a href="/manage/pages/delete/{{ id }}" class="button inverse error stack"><i class="fas fa-trash-alt"></i> <span>Delete</span></a>
+    {% endif %}
 {% endblock %}
 
 {% block addscripts %}

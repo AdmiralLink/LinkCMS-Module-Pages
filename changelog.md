@@ -1,3 +1,7 @@
+# 0.1.2
+## ADDED
+- Pages now have a delete function
+
 # 0.1.1
 ## MODIFIED
 - API image upload URL

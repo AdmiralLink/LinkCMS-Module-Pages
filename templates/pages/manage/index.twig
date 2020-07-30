@@ -14,8 +14,11 @@
     {% for page in pages %}
         <div class="p-8 p-top-0 p-bottom-0 b-1 b-solid b-color-softBlack">
             <h2><a href="/{{ page.slug }}">{{ page.title }}</a></h2>
-            <div class="display-flex">
-                <a href="/manage/pages/edit/{{ page.id }}">Edit</a>
+            <div class="display-flex space-between">
+                <div>
+                    <a href="/manage/pages/edit/{{ page.id }}">Edit</a><!--| <a href="javascript:void(0)" data-action="quickEdit" data-id="{{ page.id }}">Quick Edit</a>-->
+                </div>
+                <a class="t-color-warning" href="/manage/pages/delete/{{ page.id }}">Delete</a>
             </div>
             <p></p>
         </div>

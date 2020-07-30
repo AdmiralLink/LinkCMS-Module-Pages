@@ -234,6 +234,7 @@ let Page = function() {
                     disabled = ['revert', 'view', 'review'];
                     break;
                 case 'edit':
+                default:
                     if (Data.status == 'draft') {
                         disabled = ['revert', 'view', 'review'];
                     } else {

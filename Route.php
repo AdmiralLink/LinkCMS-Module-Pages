@@ -4,8 +4,9 @@ namespace LinkCMS\Modules\Pages;
 
 use \Flight;
 
+
+use LinkCMS\Actor\Config;
 use LinkCMS\Actor\Display;
-use LinkCMS\Actor\Error;
 use LinkCMS\Actor\Notify;
 use LinkCMS\Actor\User;
 use LinkCMS\Actor\Route as Router;
@@ -60,9 +61,34 @@ class Route {
                 $page = new Page(ContentController::load_by('id', $id));
                 if ($page) {
                     $page = json_encode($page);
-                    Display::load_page('pages/manage/edit.twig', ['page'=>$page]);
+                    Display::load_page('pages/manage/edit.twig', ['page'=>$page, 'id'=>$id]);
                 } else {
                     Flight::error('No such page found');
+                }
+            }
+        });
+
+        Flight::route('GET /manage/pages/delete/@id', function($id) {
+            if (User::is_authorized(UserModel::USER_LEVEL_ADMIN)) {
+                $pageContent = ContentController::load_by('id', $id);
+                if ($pageContent) {
+                    $page = new Page($pageContent);
+                    Display::load_page('pages/manage/delete.twig', ['page'=>$page]);   
+                } else {
+                    Flight::error('No such page');
+                }
+            }
+        });
+
+        Flight::route('POST /manage/pages/delete/@id', function($id) {
+            if (User::is_authorized(UserModel::USER_LEVEL_ADMIN)) {
+                $pageContent = ContentController::load_by('id', $id);
+                if ($pageContent) {
+                    ContentController::delete_by('id', $id);
+                    $url = Config::get_config('siteUrl');
+                    Flight::redirect($url . '/manage/pages');
+                } else {
+                    Flight::error('No such page');
                 }
             }
         });
