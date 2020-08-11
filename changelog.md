@@ -1,3 +1,15 @@
+# 0.1.4
+## ADDED
+- Page templates
+- Routes
+- Support for templates
+## MODIFIED
+- Registers content type
+
+# 0.1.3
+## MODIFIED
+- Disabled unused buttons for now
+
 # 0.1.2
 ## ADDED
 - Pages now have a delete function

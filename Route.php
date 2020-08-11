@@ -20,7 +20,22 @@ class Route {
         Router::register_folder_map(__DIR__ . '/public/js', 'pages/assets/js');
     }
 
+    // TODO: Run cron to publish scheduled posts
+
     public static function do_routes() {
+        Flight::route('GET /@slug', function($slug) {
+            $page = PageController::load_by('slug', $slug);
+            if ($page) {
+                $page = new Page($page);
+                if ($page->status !== 'published') {
+                    return true;
+                }
+                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+            } else {
+                return true;
+            }
+        });
+
         Flight::route('GET /manage/pages', function() {
             User::is_authorized(UserModel::USER_LEVEL_AUTHOR);
             $pages = PageController::load_all();
@@ -65,6 +80,30 @@ class Route {
                 } else {
                     Flight::error('No such page found');
                 }
+            }
+        });
+
+        Flight::route('GET /@slug/preview', function($slug) {
+            User::is_authorized(UserModel::USER_LEVEL_AUTHOR);
+            $page = PageController::load_by('slug', $slug);
+            if ($page) {
+                $page = new Page($page);
+                $page->publishedContent = $page->draftContent;
+                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+            } else {
+                return true;
+            }
+        });
+
+        Flight::route('GET /manage/pages/preview/@id', function($id) {
+            User::is_authorized(UserModel::USER_LEVEL_AUTHOR);
+            $page = PageController::load_by('id', $id);
+            if ($page) {
+                $page = new Page($page);
+                $page->publishedContent = $page->draftContent;
+                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+            } else {
+                return true;
             }
         });
 

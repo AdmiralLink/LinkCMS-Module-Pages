@@ -81,9 +81,10 @@ let Page = function() {
             Data.draftContent = Editor.getContents();
             Data.title = Elements.title.value;
             Data.slug = Elements.slug.value;
+            Data.template = Elements.template.value;
         },
         getElements: function() {
-            ['pubDate', 'slug', 'title', 'slugAlert'].forEach(function(elId) {
+            ['pubDate', 'slug', 'title', 'slugAlert', 'template'].forEach(function(elId) {
                 Elements[elId] = document.getElementById(elId);
             });
         },
@@ -174,12 +175,12 @@ let Page = function() {
     };
     let Buttons = {
         datePicker: document.getElementById('datePicker'),
-        revert: document.getElementById('revertBtn'),
+        //revert: document.getElementById('revertBtn'),
         draft: document.getElementById('draftBtn'),
         preview: document.getElementById('previewBtn'),
         publish: document.getElementById('publishBtn'),
         view: document.getElementById('viewBtn'),
-        review: document.getElementById('reviewBtn'),
+        //review: document.getElementById('reviewBtn'),
     };
     let Controls = {
         addEvents: function() {
@@ -196,7 +197,7 @@ let Page = function() {
                     Elements.pubDate.focus();
                 });
             });
-            Buttons.revert.addEventListener('click', function(e) {
+            /*Buttons.revert.addEventListener('click', function(e) {
                 e.preventDefault();
                 let modal = new MiniModal({
                     confirm: true,
@@ -205,7 +206,7 @@ let Page = function() {
                 modal.addEventListener('confirmed', function(e) {
                     Actions.revertContent();
                 });
-            });
+            });*/
             Buttons.draft.addEventListener('click', function(e) {
                 e.preventDefault();
                 Actions.save('draft');
@@ -223,20 +224,22 @@ let Page = function() {
                 e.preventDefault();
                 window.open(window.linkcms.url + '/' + Data.slug, '_blank');
             });
-            Buttons.review.addEventListener('click', function(e) {
+            /*Buttons.review.addEventListener('click', function(e) {
                 e.preventDefault();
-            });
+            });*/
         },
         set: function(state) {
             let disabled = [];
             switch(state) {
                 case 'insert':
-                    disabled = ['revert', 'view', 'review'];
+                    // disabled = ['revert', 'view', 'review'];
+                    disabled = ['view', 'review'];
                     break;
                 case 'edit':
                 default:
                     if (Data.status == 'draft') {
-                        disabled = ['revert', 'view', 'review'];
+                        // disabled = ['revert', 'view', 'review'];
+                        disabled = ['view', 'review'];
                     } else {
                         disabled = [];
                     }
@@ -256,6 +259,7 @@ let Page = function() {
         title: null,
         slug: null,
         status: null,
+        template: null,
         pubDate: null,
         draftModifiedDate: null,
         draftContent: null,

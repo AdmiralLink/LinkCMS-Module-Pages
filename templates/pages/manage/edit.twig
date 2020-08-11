@@ -11,21 +11,22 @@
         {{ forms.text('slug', 'Slug') }}
         <label class="sr-only" aria-live="alert" id="slugAlert"></label>
         <div class="display-flex">
-            {{ forms.text('pubDate', 'Publish Date', false, {'disabled': true}) }} {{ forms.button('<i class="fas fa-calendar"></i>', 'm-left-10 m-top-20 p-left-10 p-right-10 p-top-0 p-bottom-0', 'datePicker', {'title': 'Click to launch date picker. You will start by selecting the month, then the year, date, hour, minute and AM/PM.'}) }}    
+            {{ forms.text('pubDate', 'Publish Date', false, {'disabled': true}) }} {{ forms.button('<i class="fas fa-calendar"></i>', 'm-20 p-left-10 p-right-10 p-top-0 p-bottom-0', 'datePicker', {'title': 'Click to launch date picker. You will start by selecting the month, then the year, date, hour, minute and AM/PM.'}) }}    
+            {{ forms.select('template', pageTemplates, false, false, 'Page Template') }}
         </div>
     </div>
     <div id="contentEditor" class="hat-editor"></div>
 {% endblock %}
 
 {% block metadata %}
-    {{ forms.button('<i class="fas fa-history"></i> <span>Revert</span>', 'warning inverse stack', 'revertBtn') }}    
-    <hr>
+    <!--{{ forms.button('<i class="fas fa-history"></i> <span>Revert</span>', 'warning inverse stack', 'revertBtn') }}    
+    <hr>-->
     {{ forms.button('<i class="fas fa-save"></i> <span>Save</span>', 'primary inverse stack', 'draftBtn') }}
     {{ forms.button('<i class="fas fa-eye"></i> <span>Preview Draft</span>', 'secondary inverse stack', 'previewBtn') }}
     <hr>
     {{ forms.button('<i class="fas fa-atlas"></i> <span>Publish</span>', 'primary inverse stack', 'publishBtn') }}
     {{ forms.button('<i class="fas fa-eye"></i> <span>View Published</span>', 'secondary inverse stack', 'viewBtn') }}
-    {{ forms.button('<i class="fas fa-eye"></i> <span>Review Published</span>', 'info inverse stack', 'reviewBtn') }}
+    <!--{{ forms.button('<i class="fas fa-eye"></i> <span>Review Published</span>', 'info inverse stack', 'reviewBtn') }}-->
     {% if id %}
     <hr>
         <a href="/manage/pages/delete/{{ id }}" class="button inverse error stack"><i class="fas fa-trash-alt"></i> <span>Delete</span></a>
