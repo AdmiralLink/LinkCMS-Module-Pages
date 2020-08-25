@@ -14,6 +14,9 @@
             {{ forms.text('pubDate', 'Publish Date', false, {'disabled': true}) }} {{ forms.button('<i class="fas fa-calendar"></i>', 'm-20 p-left-10 p-right-10 p-top-0 p-bottom-0', 'datePicker', {'title': 'Click to launch date picker. You will start by selecting the month, then the year, date, hour, minute and AM/PM.'}) }}    
             {{ forms.select('template', pageTemplates, false, false, 'Page Template') }}
         </div>
+        <div class="hide">
+            {{ forms.textarea('exerpt', 'Excerpt', false, {'id': 'excerpt'} )}}
+        </div>
     </div>
     <div id="contentEditor" class="hat-editor"></div>
 {% endblock %}
@@ -40,9 +43,10 @@
 <script src="/js/lib/ajax.js"></script>
 <script src="/js/modules/image.js"></script>
 <script src="/js/lib/hat.js"></script>
-<script src="/manage/pages/assets/js/page.js"></script>
+<script src="/js/modules/content.js"></script>
 <script>
     var content = {% if page %}{{ page|raw }}{% else %}false{% endif %};
+    let Page = new Content({apiEndpoint: '/api/pages/save', contentName: 'Page', editEndpoint: '/manage/pages/edit/'});
     Page.start(content);
 </script>
 {% endblock %}

@@ -1,3 +1,10 @@
+# 0.1.5
+## ADDED
+- Code around excerpts
+## MODIFIED
+- Changed default "page" to "content" for page loading
+- Uses content.js instead of custom page.js
+
 # 0.1.4
 ## ADDED
 - Page templates

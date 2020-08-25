@@ -30,7 +30,7 @@ class Route {
                 if ($page->status !== 'published') {
                     return true;
                 }
-                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+                Display::load_page('content/' . $page->template . '.twig', ['page' => $page]);
             } else {
                 return true;
             }
@@ -89,7 +89,7 @@ class Route {
             if ($page) {
                 $page = new Page($page);
                 $page->publishedContent = $page->draftContent;
-                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+                Display::load_page('content/' . $page->template . '.twig', ['page' => $page]);
             } else {
                 return true;
             }
@@ -101,7 +101,7 @@ class Route {
             if ($page) {
                 $page = new Page($page);
                 $page->publishedContent = $page->draftContent;
-                Display::load_page('pages/' . $page->template . '.twig', ['page' => $page]);
+                Display::load_page('content/' . $page->template . '.twig', ['page' => $page]);
             } else {
                 return true;
             }
